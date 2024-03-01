@@ -446,7 +446,8 @@ struct YUVIter<
 
 #define HMP_CHANNEL_FORMAT_DISPATCH_CASE(Format, ...)                          \
     case (Format): {                                                           \
-        const auto FMT = Format;                                               \
+        constexpr auto FMT = Format;                                           \
+        using cfc_t = std::integral_constant<ChannelFormat, FMT>;              \
         return __VA_ARGS__();                                                  \
     }
 

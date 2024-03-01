@@ -332,8 +332,8 @@ Tensor& img_normalize_cuda(Tensor &dst, const Tensor &src, const Tensor &mean, c
                 HMP_DISPATCH_IMAGE_CHANNEL(channel, "img_normalize_cuda", [&](){
                     using itype = Vector<iscalar_t, C::size()>;
                     using otype = Vector<oscalar_t, C::size()>;
-                    auto src_iter = ImageSeqIter<itype, FMT>::from_tensor(src, cformat);
-                    auto dst_iter = ImageSeqIter<otype, FMT>::from_tensor(dst, cformat);
+                    auto src_iter = ImageSeqIter<itype, cfc_t::value>::from_tensor(src, cformat);
+                    auto dst_iter = ImageSeqIter<otype, cfc_t::value>::from_tensor(dst, cformat);
                     auto fmean_ptr = fmean.data<float>();
                     auto fmean_stride = fmean.stride(0);
                     auto fstd_ptr = fstd.data<float>();
